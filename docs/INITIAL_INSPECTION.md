@@ -1,0 +1,11 @@
+# Repository inspection before modifications
+
+Inspected all tracked source/build/assets/workflow paths at original main commit `7514577b8d1861f30b4fa63657fc3b29345a6431`. No AGENTS.md, Gradle wrapper, unit tests, symbol directory or audio directory was present.
+
+Reference: `file_00000000a0588246ba8d5de301606f3d.png`, 2,761,811 bytes. Direct repository binary retrieval was blocked by the environment proxy and the connector's UTF-8 restriction. The user then supplied `1000083714.jpg`; it was visually inspected before implementation. Direction: forest/waterfall/cottage setting, ornate gilded frame, glossy 3D bell/seven/clover/fruit/diamond/pot symbols, colored jackpots and green spin control. The artwork has four rows; the requested prototype deliberately uses five columns and three rows.
+
+The original MainActivity instantiated WebView and loaded index.html. HTML stretched the uploaded full-screen screenshot behind transparent hit regions. Nine referenced symbol WebPs were missing from the entire recursive repository tree. Bonus used an emoji bell in a timed overlay, no lock/respin state. Random payouts were unrelated to visible line outcomes; random cells flashed. Trigger threshold was four clovers or an independent random probability. Auto did not visibly toggle or disable at insufficient balance. Menu had no handler; bet options did not highlight selection or close on outside taps. Trees and jackpot panels were part of the static screenshot. Audio was oscillator-only browser JavaScript with no packaged sound assets or Android lifecycle management. bg1.txt was a truncated/unused encoded JPEG fragment.
+
+Original GitHub Actions ran on main pushes, used JDK 17 / Gradle 8.9, copied the entire root reference image into app assets, built assembleDebug and grepped only that screenshot name in the APK. It uploaded Golden-Clover-APK / Golden-Clover.apk. It did not verify independent graphics, audio or gameplay. Previous successful APK builds therefore did not establish functional symbols or a layered game.
+
+The network proxy in this session was unreachable. The working source was reconstructed through GitHub connector reads. Remote commits are based on the original remote main commit to preserve useful history; the local inspection snapshot is not used to replace remote history.

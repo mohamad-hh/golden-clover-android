@@ -1,0 +1,22 @@
+package com.mohamadhh.goldenclover;
+import android.app.Instrumentation;import android.app.Activity;import android.content.Intent;import android.os.Bundle;import android.os.SystemClock;import android.graphics.Bitmap;import android.view.MotionEvent;import android.view.ViewGroup;
+import com.mohamadhh.goldenclover.game.*;
+import java.io.File;import java.io.FileOutputStream;import java.lang.reflect.Field;
+/** Real Android input/audio/layout smoke test plus reproducible render captures. */
+public final class SmokeInstrumentation extends Instrumentation {
+ private GoldenCloverView view;private GameState state;private String preset;private File directory;
+ @Override public void onCreate(Bundle args){super.onCreate(args);preset=args.getString("preset","16x9");start();}
+ private void check(boolean b,String message){if(!b)throw new AssertionError(message);}
+ private void tap(float x,float y)throws Exception{final float[] point=new float[2];runOnMainSync(()->{float scale=Math.min(view.getWidth()/1920f,view.getHeight()/1080f);point[0]=(view.getWidth()-1920*scale)/2+x*scale;point[1]=(view.getHeight()-1080*scale)/2+y*scale;});long t=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(t,t,MotionEvent.ACTION_DOWN,point[0],point[1],0);MotionEvent up=MotionEvent.obtain(t,t+60,MotionEvent.ACTION_UP,point[0],point[1],0);getUiAutomation().injectInputEvent(down,true);getUiAutomation().injectInputEvent(up,true);down.recycle();up.recycle();SystemClock.sleep(200);}
+ private void shot(String name)throws Exception{waitForIdleSync();SystemClock.sleep(150);Bitmap b=getUiAutomation().takeScreenshot();check(b!=null,"screenshot available");try(FileOutputStream out=new FileOutputStream(new File(directory,preset+"-"+name+".png"))){b.compress(Bitmap.CompressFormat.PNG,100,out);}b.recycle();}
+ @Override public void onStart(){Bundle result=new Bundle();Activity activity=null;try{
+  Intent intent=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);activity=startActivitySync(intent);SystemClock.sleep(2500);
+  Activity a=activity;runOnMainSync(()->view=(GoldenCloverView)((ViewGroup)a.findViewById(android.R.id.content)).getChildAt(0));Field f=GoldenCloverView.class.getDeclaredField("g");f.setAccessible(true);state=(GameState)f.get(view);Field loaded=GoldenCloverView.class.getDeclaredField("loaded");loaded.setAccessible(true);check(loaded.getBoolean(view),"graphics and audio loaded");check(view.getWidth()>view.getHeight(),"landscape orientation");
+  directory=new File(getTargetContext().getExternalFilesDir(null),"qa");directory.mkdirs();runOnMainSync(()->{state.credit=1000;state.bet.value=20;state.ui.auto=false;});shot("base");tap(568,1000);check(state.ui.betMenu,"bet panel opens menu");shot("bet-menu");tap(960,580);check(state.bet.value==50,"bet menu selection updates state");check(!state.ui.betMenu,"bet menu closes after selection");
+  boolean sound=state.ui.sound;tap(1560,1000);check(state.ui.sound!=sound,"sound toggle");tap(1560,1000);tap(1764,945);check(state.phase==GameState.Phase.SPIN,"tap begins native reel motion");shot("spin");SystemClock.sleep(3000);runOnMainSync(()->{state.ui.auto=false;state.phase=GameState.Phase.IDLE;state.credit=4;});tap(1298,1000);check(!state.ui.auto,"auto stops when balance insufficient");
+  runOnMainSync(()->{state.phase=GameState.Phase.IDLE;state.credit=10000;state.bet.value=20;});tap(200,854);check(state.phase==GameState.Phase.BOUNCE,"bonus button begins bounce");SystemClock.sleep(1800);shot("bell-drop");SystemClock.sleep(1400);shot("bonus");
+  runOnMainSync(()->{state.phase=GameState.Phase.WIN;state.time=1;state.win=1600;});shot("mega-win");
+  runOnMainSync(()->{state.phase=GameState.Phase.BONUS_END;state.time=1;state.win=1245681;state.bonus.grand=true;});shot("grand");
+  result.putString("stream","PASS: Android input, audio loading, landscape, bet, spin, auto, bonus and render captures "+preset+"\n");finish(Activity.RESULT_OK,result);
+ }catch(Throwable e){result.putString("stream","FAIL: "+e.toString()+"\n");finish(Activity.RESULT_CANCELED,result);}finally{if(activity!=null)activity.finish();}}
+}
