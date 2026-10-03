@@ -1,3 +1,3 @@
 # Golden Clover Android
 
-Android build project for the Golden Clover demo.
+Playable landscape Android slot demo. GitHub Actions builds `Golden-Clover.apk` on every push to `main`.
