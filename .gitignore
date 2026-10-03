@@ -1,0 +1,7 @@
+.gradle/
+**/build/
+local.properties
+*.apk
+*.class
+__pycache__/
+art-source/
