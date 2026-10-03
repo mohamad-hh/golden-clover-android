@@ -46,6 +46,7 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
       - name: Android input and rendering checks at four aspect ratios
+        timeout-minutes: 10
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 35

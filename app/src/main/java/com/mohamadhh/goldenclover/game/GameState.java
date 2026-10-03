@@ -16,7 +16,7 @@ public final class GameState {
  public void notice(String s){ui.message=s;ui.messageTime=3;}
  private void enter(Phase p){phase=p;time=0;}
  private void beginBonus(){bonus.begin(reels.symbols,random,bet.value);tree=random.nextInt(3);enter(Phase.BOUNCE);events|=TRIGGER;}
- public void update(float dt){clock+=dt;time+=dt;grand+=dt*.27;major+=dt*.08;ui.messageTime=Math.max(0,ui.messageTime-dt);
+ public void update(float dt){clock+=dt;time+=dt;grand+=dt*.27;major+=dt*.08;ui.messageTime=Math.max(0,ui.messageTime-dt);ui.popup=ui.betMenu?Math.min(1,ui.popup+dt*6):0;
   switch(phase){
    case IDLE:if(ui.auto&&time>.7f)spin();break;
    case SPIN:int old=reels.stopped;reels.update(dt,time);for(int c=old;c<reels.stopped;c++)events|=STOP0<<c;if(time>2.65f){baseWin=PayoutLogic.evaluate(reels.symbols,bet.value,reels.glow);if(reels.bonusCount()>=5){credit+=baseWin;beginBonus();}else{win=baseWin;credit+=win;if(win>0){events|=win>=bet.value*10?BIG:win>=bet.value*3?MEDIUM:NORMAL;events|=COINS;enter(Phase.WIN);}else enter(Phase.IDLE);}}break;
