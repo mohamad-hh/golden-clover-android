@@ -15,7 +15,7 @@ public final class GameState {
  public boolean buyBonus(){if(busy())return false;if(credit<20*bet.value){notice("BONUS COSTS 20 × BET");return false;}credit-=20*bet.value;win=0;for(int c=0;c<5;c++)for(int r=0;r<3;r++)reels.symbols[c][r]=3;for(int i=0;i<5;i++)reels.symbols[i][i%3]=2;beginBonus();return true;}
  public void notice(String s){ui.message=s;ui.messageTime=3;}
  private void enter(Phase p){phase=p;time=0;}
- private void beginBonus(){bonus.begin(reels.symbols,random,bet.value);tree=random.nextInt(3);enter(Phase.BOUNCE);events|=TRIGGER;}
+ private void beginBonus(){for(int c=0;c<5;c++)for(int r=0;r<3;r++)if(reels.symbols[c][r]==2||reels.symbols[c][r]==8)reels.glow[c][r]=true;bonus.begin(reels.symbols,random,bet.value);tree=random.nextInt(3);enter(Phase.BOUNCE);events|=TRIGGER;}
  public void update(float dt){clock+=dt;time+=dt;grand+=dt*.27;major+=dt*.08;ui.messageTime=Math.max(0,ui.messageTime-dt);ui.popup=ui.betMenu?Math.min(1,ui.popup+dt*6):0;
   switch(phase){
    case IDLE:if(ui.auto&&time>.7f)spin();break;

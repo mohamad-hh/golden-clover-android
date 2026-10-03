@@ -5,7 +5,7 @@ No reference screenshot is used by this pipeline. Pillow is required only for au
 import argparse,json,hashlib
 from pathlib import Path
 from PIL import Image,ImageFilter,ImageDraw
-p=argparse.ArgumentParser();p.add_argument('--symbols',required=True);p.add_argument('--decor',required=True);p.add_argument('--ui',required=True);p.add_argument('--background',required=True);p.add_argument('--logo');args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--symbols',required=True);p.add_argument('--decor',required=True);p.add_argument('--ui',required=True);p.add_argument('--background',required=True);p.add_argument('--logo');p.add_argument('--pot');args=p.parse_args()
 root=Path(__file__).resolve().parents[1]/'app/src/main/assets';(root/'symbols').mkdir(exist_ok=True);(root/'art').mkdir(exist_ok=True)
 def cell(path,cols,rows,n):
  im=Image.open(path).convert('RGBA');w,h=im.size;return im.crop((round((n%cols)*w/cols),round((n//cols)*h/rows),round((n%cols+1)*w/cols),round((n//cols+1)*h/rows)))
@@ -18,7 +18,9 @@ def trimmed(im):
  box=im.getchannel('A').point(lambda a:255 if a>20 else 0).getbbox();return im.crop(box) if box else im
 names=['bell','seven','clover','lemon','orange','grapes','watermelon','diamond','pot']
 for i,n in enumerate(names):
- im=Image.open(args.symbols).convert('RGBA');sw,sh=im.size; regions=[(0,0,1/3,.359),(1/3,0,2/3,.359),(2/3,0,1,.359),(0,.359,1/3,.662),(1/3,.359,2/3,.662),(2/3,.359,1,.650),(0,.662,1/3,1),(1/3,.662,2/3,1),(2/3,.650,1,1)];box=regions[i];im=im.crop(tuple(round(v*(sw if j%2==0 else sh)) for j,v in enumerate(box)));save(im,Path('symbols')/(n+'.webp'))
+ im=Image.open(args.symbols).convert('RGBA');sw,sh=im.size; regions=[(0,0,1/3,.359),(1/3,0,2/3,.359),(2/3,0,1,.359),(0,.359,1/3,.662),(1/3,.359,2/3,.662),(2/3,.359,1,.650),(0,.662,1/3,1),(1/3,.662,2/3,1),(2/3,.650,1,1)];box=regions[i];im=im.crop(tuple(round(v*(sw if j%2==0 else sh)) for j,v in enumerate(box)))
+ if n=='pot' and args.pot:im=Image.open(args.pot).convert('RGBA').resize((418,439),Image.Resampling.LANCZOS)
+ save(im,Path('symbols')/(n+'.webp'))
  # Win sprites include a separate alpha glow layer, baked for predictable Android blending.
  glow=Image.new('RGBA',im.size,(255,213,64,0));glow.putalpha(im.getchannel('A').filter(ImageFilter.GaussianBlur(14)).point(lambda a:int(a*.85)));glow.alpha_composite(im);save(glow,Path('symbols')/(n+'_win.webp'))
 decor=['tree_trunk','tree_blue','tree_red','tree_green','clover_clusters','coin','panel','spin_button','spark']
