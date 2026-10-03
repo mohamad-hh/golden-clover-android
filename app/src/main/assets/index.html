@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Golden Clover</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07020d;color:#fff;font-family:Arial,sans-serif}
+body{background:radial-gradient(circle at 50% 15%,#44206a 0,#160922 35%,#06020c 78%);user-select:none}
+.fx{position:fixed;inset:0;pointer-events:none;background:
+radial-gradient(circle at 13% 12%,rgba(0,174,255,.22),transparent 20%),
+radial-gradient(circle at 50% 7%,rgba(255,34,75,.2),transparent 22%),
+radial-gradient(circle at 86% 13%,rgba(42,255,127,.18),transparent 20%)}
+.game{height:100%;display:grid;grid-template-rows:25% 1fr 18%;padding:1.2vh 2vw;gap:1vh}
+.top{display:grid;grid-template-columns:1fr 1.15fr 1fr;align-items:center;gap:2vw}
+.jack{display:grid;grid-template-columns:1fr 1fr;gap:.6vh .8vw}
+.jbox{border:2px solid #ffd875;border-radius:1.2vw;padding:.35vh .7vw;text-align:center;background:linear-gradient(#270f40,#09030e);box-shadow:0 0 1vw rgba(255,210,81,.25),inset 0 0 1vw #000}
+.jbox b{display:block;font-size:1.15vw;color:#ffd85f;text-shadow:0 0 .5vw #ff8c00}.jbox span{font-size:1.5vw;font-weight:900}
+.title{text-align:center;font-size:3.5vw;font-weight:1000;letter-spacing:.05em;background:linear-gradient(#fff9bd,#ffd32c,#ff7b00);-webkit-background-clip:text;color:transparent;text-shadow:0 0 1vw rgba(255,190,0,.45)}
+.trees{position:relative;height:100%;display:flex;justify-content:center;align-items:end;gap:1vw}
+.tree{width:9vw;height:9vw;border-radius:50%;position:relative;filter:drop-shadow(0 0 1vw currentColor);animation:float 2.8s ease-in-out infinite}
+.tree:before,.tree:after{content:"";position:absolute;border-radius:50%;background:currentColor;box-shadow:-1.7vw 1.3vw 0 currentColor,1.7vw 1.3vw 0 currentColor,0 2.5vw 0 currentColor}
+.tree:before{width:3.5vw;height:3.5vw;left:2.7vw;top:1.2vw}.tree:after{width:2.5vw;height:2.5vw;left:3.2vw;top:.2vw}
+.tree i{position:absolute;left:4.25vw;bottom:-3.2vw;width:.6vw;height:4.7vw;background:linear-gradient(90deg,#5b2f10,#d7a64f,#5b2f10);border-radius:50%}
+.blue{color:#56c6ff}.red{color:#ff375d;animation-delay:.3s}.green{color:#59ff8c;animation-delay:.6s}
+@keyframes float{50%{transform:translateY(-.7vh) scale(1.03)}}
+.stage{display:grid;grid-template-columns:10% 1fr 10%;align-items:center}
+.side{text-align:center;color:#f2d57b;font-size:1.5vw;font-weight:900;text-shadow:0 0 .5vw #ff7300}.side small{display:block;font-size:.85vw;color:#fff}
+.machine{height:100%;padding:1.5vh 1.2vw;border:4px solid #f6cc58;border-radius:2vw;background:linear-gradient(#6a1f26,#25070c);box-shadow:0 0 2vw rgba(255,164,33,.5),inset 0 0 1.4vw #000}
+.reels{height:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:.55vw;background:#2a0e16;padding:.7vw;border-radius:1vw}
+.reel{display:grid;grid-template-rows:repeat(3,1fr);gap:.45vh;min-width:0}
+.sym{position:relative;border-radius:.8vw;background:radial-gradient(circle at 40% 30%,#fff7df,#f7d77e 28%,#b77a1f 62%,#4e2507 100%);border:2px solid #ffe89a;box-shadow:inset 0 0 .7vw rgba(255,255,255,.8),0 .18vw .35vw #000;display:flex;align-items:center;justify-content:center;font-size:3.8vw;font-weight:1000;text-shadow:0 .15vw .1vw #5b2000;overflow:hidden}
+.sym:after{content:"";position:absolute;inset:0;background:linear-gradient(130deg,rgba(255,255,255,.45),transparent 35%)}
+.sym.pop{animation:pop .38s cubic-bezier(.2,1.8,.3,1)}@keyframes pop{0%{transform:scale(.78)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.sym.win{animation:win .65s infinite alternate;box-shadow:0 0 1.2vw #fff16b,inset 0 0 1vw #fff}@keyframes win{to{transform:scale(1.06) rotate(-1deg)}}
+.clover{color:#15a84d;text-shadow:0 .12vw .08vw #052c15}.seven{color:#e51f28}.bell{color:#ffb000}.gem{color:#aef7ff}
+.bottom{display:grid;grid-template-columns:1.1fr .8fr 1fr .7fr .7fr;align-items:center;gap:1vw;background:linear-gradient(#34154a,#100719);border:2px solid #9b61c8;border-radius:1.5vw;padding:1vh 1.3vw;box-shadow:0 0 1.4vw rgba(185,96,255,.25)}
+.metric{text-align:center}.metric b{display:block;color:#d7bfff;font-size:.8vw}.metric span{font-size:1.55vw;font-weight:900}
+.btn{height:100%;border:2px solid #ffd66a;border-radius:1vw;background:linear-gradient(#6c3b0a,#211005);color:#fff;font-size:1.15vw;font-weight:900;box-shadow:inset 0 0 1vw rgba(255,210,92,.25)}
+.spin{border-radius:50%;aspect-ratio:1;background:radial-gradient(circle at 38% 32%,#fff0a4,#ffb600 28%,#ee5f00 63%,#6b1600);font-size:1.3vw}
+#betMenu{position:absolute;left:50%;bottom:16vh;transform:translateX(-50%) scale(.9);opacity:0;pointer-events:none;display:grid;grid-template-columns:repeat(3,1fr);gap:.6vw;padding:1vw;background:#15071f;border:2px solid #ffd66a;border-radius:1vw;box-shadow:0 0 2vw #000;transition:.2s;z-index:10}
+#betMenu.show{opacity:1;transform:translateX(-50%) scale(1);pointer-events:auto}.betOpt{padding:.8vw 1.2vw;border:1px solid #a66b25;border-radius:.7vw;background:#2a102f;color:#fff;font-weight:900}
+.overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:radial-gradient(circle,#4d1b6f,#08020c 70%);z-index:20}.overlay.show{display:flex}
+.bonus{text-align:center;animation:zoom .5s ease}.bonus h1{font-size:6vw;margin:0;color:#ffd85b;text-shadow:0 0 2vw #ff7a00}.bonus .bellx{font-size:13vw;animation:bounce .9s infinite}.bonus p{font-size:2vw}
+@keyframes bounce{50%{transform:translateY(-2vh) scale(1.08)}}@keyframes zoom{from{transform:scale(.5);opacity:0}}
+.spark{position:fixed;width:.45vw;height:.45vw;border-radius:50%;background:#fff36e;pointer-events:none;z-index:50;animation:fly 1s linear forwards}@keyframes fly{to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}
+</style></head>
+<body><div class="fx"></div>
+<div class="game">
+ <div class="top">
+  <div class="jack"><div class="jbox"><b>GRAND</b><span id="grand">1,245,678</span></div><div class="jbox"><b>MINOR</b><span>1,250</span></div><div class="jbox"><b>MAJOR</b><span>70,584</span></div><div class="jbox"><b>MINI</b><span>500</span></div></div>
+  <div class="title">GOLDEN<br>CLOVER X</div>
+  <div class="trees"><div class="tree blue"><i></i></div><div class="tree red"><i></i></div><div class="tree green"><i></i></div></div>
+ </div>
+ <div class="stage"><div class="side">25 LINES<small>GOOD LUCK!</small></div><div class="machine"><div class="reels" id="reels"></div></div><div class="side">25 LINES<small>WIN BIG!</small></div></div>
+ <div class="bottom">
+  <div class="metric"><b>CREDIT</b><span id="credit">1000.00 TL</span></div>
+  <button class="btn" id="betBtn">BET<br><span id="betVal">20.00 TL</span></button>
+  <div class="metric"><b>WIN</b><span id="win">0.00 TL</span></div>
+  <button class="btn spin" id="spin">SPIN</button>
+  <button class="btn" id="sound">SOUND ON</button>
+ </div>
+</div>
+<div id="betMenu"></div>
+<div class="overlay" id="overlay"><div class="bonus"><div class="bellx">🔔</div><h1>CLOVER BONUS!</h1><p id="bonusText">3 RESPINS</p></div></div>
+<script>
+const symbols=['🍒','🍋','🍉','🍇','🍊','🔔','7','💎','☘'];
+const bets=[5,10,20,35,50,75,100,150,200]; let bet=20,credit=1000,spinning=false,soundOn=true;
+const reels=document.getElementById('reels'), creditEl=document.getElementById('credit'),winEl=document.getElementById('win'),betVal=document.getElementById('betVal'),menu=document.getElementById('betMenu');
+for(let c=0;c<5;c++){let r=document.createElement('div');r.className='reel';for(let y=0;y<3;y++){let s=document.createElement('div');s.className='sym';s.textContent=symbols[Math.floor(Math.random()*symbols.length)];r.appendChild(s)}reels.appendChild(r)}
+bets.forEach(v=>{let b=document.createElement('button');b.className='betOpt';b.textContent=v.toFixed(2)+' TL';b.onclick=()=>{bet=v;betVal.textContent=v.toFixed(2)+' TL';menu.classList.remove('show')};menu.appendChild(b)})
+document.getElementById('betBtn').onclick=()=>menu.classList.toggle('show');
+document.getElementById('sound').onclick=e=>{soundOn=!soundOn;e.currentTarget.textContent=soundOn?'SOUND ON':'SOUND OFF'};
+function tone(f=440,d=.08){if(!soundOn)return;const a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.type='triangle';g.gain.setValueAtTime(.11,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+d);o.connect(g).connect(a.destination);o.start();o.stop(a.currentTime+d)}
+function sparks(){for(let i=0;i<45;i++){let p=document.createElement('i');p.className='spark';p.style.left='50%';p.style.top='52%';p.style.setProperty('--x',((Math.random()-.5)*95)+'vw');p.style.setProperty('--y',((Math.random()-.5)*75)+'vh');document.body.appendChild(p);setTimeout(()=>p.remove(),1100)}}
+function refresh(){creditEl.textContent=credit.toFixed(2)+' TL'}
+async function spin(){if(spinning||credit<bet)return;spinning=true;credit-=bet;winEl.textContent='0.00 TL';refresh();tone(180,.12);
+ const cols=[...document.querySelectorAll('.reel')]; for(let i=0;i<cols.length;i++){setTimeout(()=>{[...cols[i].children].forEach(s=>{s.classList.remove('win');s.textContent=symbols[Math.floor(Math.random()*symbols.length)];s.classList.remove('pop');void s.offsetWidth;s.classList.add('pop');tone(240+i*45,.05)})},120*i)}
+ await new Promise(r=>setTimeout(r,900));
+ const cells=[...document.querySelectorAll('.sym')];let cl=cells.filter(x=>x.textContent==='☘').length;let win=0;
+ if(cl>=3 || Math.random()<.08){document.getElementById('overlay').classList.add('show');tone(720,.35);sparks();await new Promise(r=>setTimeout(r,1600));document.getElementById('overlay').classList.remove('show');win=bet*(3+Math.floor(Math.random()*12))}
+ else if(Math.random()<.24) win=bet*(1+Math.floor(Math.random()*4));
+ if(win){credit+=win;winEl.textContent=win.toFixed(2)+' TL';cells.filter(()=>Math.random()<.28).forEach(x=>x.classList.add('win'));sparks();tone(880,.22)}
+ refresh();document.getElementById('grand').textContent=(1245678+Math.floor(Math.random()*60)).toLocaleString();spinning=false}
+document.getElementById('spin').onclick=spin;refresh();
+</script></body></html>
