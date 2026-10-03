@@ -100,7 +100,7 @@ public final class GoldenCloverView extends View implements Choreographer.FrameC
  @Override public boolean onTouchEvent(android.view.MotionEvent e){if(!loaded)return true;float x=layout.x(e.getX()),y=layout.y(e.getY());if(e.getAction()==MotionEvent.ACTION_DOWN){pressed=hit(x,y,1640,825,240,240);invalidate();return true;}if(e.getAction()==MotionEvent.ACTION_CANCEL){pressed=false;return true;}if(e.getAction()!=MotionEvent.ACTION_UP)return true;pressed=false;g.events|=GameState.CLICK;
   if(g.ui.betMenu){for(int i=0;i<9;i++)if(hit(x,y,585+i%3*260,402+i/3*123,231,110)){g.selectBet(BetState.VALUES[i]);g.ui.betMenu=false;cacheTime=0;return true;}if(!hit(x,y,495,239,930,617))g.ui.betMenu=false;return true;}
   if(g.ui.menu){if(hit(x,y,740,706,440,110)&&!g.busy()){g.credit=1000;g.ui.menu=false;cacheTime=0;save();}else if(!hit(x,y,310,180,1300,710))g.ui.menu=false;return true;}
-  if(hit(x,y,1640,825,240,240))g.spin();else if(hit(x,y,424,941,288,118)&&!g.busy())g.ui.betMenu=true;else if(hit(x,y,1200,959,197,89))g.toggleAuto();else if(hit(x,y,1512,959,97,89))g.ui.sound=!g.ui.sound;else if(hit(x,y,1408,959,97,89))g.ui.menu=true;else if(hit(x,y,53,814,300,98))g.buyBonus();cacheTime=0;save();performClick();return true;
+  if(hit(x,y,1640,825,240,240))g.spin();else if(hit(x,y,424,941,288,118)&&!g.busy()){g.ui.auto=false;g.ui.betMenu=true;}else if(hit(x,y,1200,959,197,89))g.toggleAuto();else if(hit(x,y,1512,959,97,89))g.ui.sound=!g.ui.sound;else if(hit(x,y,1408,959,97,89))g.ui.menu=true;else if(hit(x,y,53,814,300,98))g.buyBonus();cacheTime=0;save();performClick();return true;
  }
  @Override public boolean performClick(){super.performClick();return true;}
 }

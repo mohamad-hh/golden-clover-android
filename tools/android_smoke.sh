@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 mkdir -p qa
+adb shell settings put secure immersive_mode_confirmations confirmed
+adb shell pm disable-user --user 0 com.google.android.gms
 for spec in '16x9 1080x1920' '18x9 1080x2160' '19.5x9 1080x2340' '20x9 1080x2400'; do
   read -r preset size <<< "$spec"
   adb shell wm size "$size"
