@@ -17,8 +17,16 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
+      - name: Package uploaded artwork into app assets
+        run: |
+          cp file_00000000a0588246ba8d5de301606f3d.png app/src/main/assets/file_00000000a0588246ba8d5de301606f3d.png
+          ls -lh app/src/main/assets/file_00000000a0588246ba8d5de301606f3d.png
       - name: Build debug APK
         run: gradle :app:assembleDebug --stacktrace
+      - name: Verify artwork is packaged
+        run: |
+          unzip -l app/build/outputs/apk/debug/app-debug.apk | grep file_00000000a0588246ba8d5de301606f3d.png
+          ls -lh app/build/outputs/apk/debug/app-debug.apk
       - name: Rename APK
         run: cp app/build/outputs/apk/debug/app-debug.apk Golden-Clover.apk
       - uses: actions/upload-artifact@v4
