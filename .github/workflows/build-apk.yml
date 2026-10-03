@@ -70,3 +70,14 @@ jobs:
             apk-verification.txt
             qa/
           if-no-files-found: error
+      - name: Upload compact visual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Golden-Clover-Visual-Review
+          path: |
+            qa/screenshots/16x9-*.png
+            qa/screenshots/*-base.png
+            qa/screenshots/20x9-bonus.png
+            qa/screenshots/20x9-grand.png
+          if-no-files-found: error
