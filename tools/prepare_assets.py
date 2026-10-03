@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+"""Production extraction/encoding of original generated game sprite sheets.
+No reference screenshot is used by this pipeline. Pillow is required only for authoring.
+"""
+import argparse,json,hashlib
+from pathlib import Path
+from PIL import Image,ImageFilter,ImageDraw
+p=argparse.ArgumentParser();p.add_argument('--symbols',required=True);p.add_argument('--decor',required=True);p.add_argument('--ui',required=True);p.add_argument('--background',required=True);args=p.parse_args()
+root=Path(__file__).resolve().parents[1]/'app/src/main/assets';(root/'symbols').mkdir(exist_ok=True);(root/'art').mkdir(exist_ok=True)
+def cell(path,cols,rows,n):
+ im=Image.open(path).convert('RGBA');w,h=im.size;return im.crop((round((n%cols)*w/cols),round((n//cols)*h/rows),round((n%cols+1)*w/cols),round((n//cols+1)*h/rows)))
+def save(im,path,size=None):
+ if size:im=im.resize(size,Image.Resampling.LANCZOS)
+ im.save(root/path,'WEBP',lossless=True,method=6)
+ # Verify each encoded production asset immediately.
+ with Image.open(root/path) as test:test.load()
+def trimmed(im):
+ box=im.getchannel('A').point(lambda a:255 if a>20 else 0).getbbox();return im.crop(box) if box else im
+names=['bell','seven','clover','lemon','orange','grapes','watermelon','diamond','pot']
+for i,n in enumerate(names):
+ im=cell(args.symbols,3,3,i);save(im,Path('symbols')/(n+'.webp'))
+ # Win sprites include a separate alpha glow layer, baked for predictable Android blending.
+ glow=Image.new('RGBA',im.size,(255,213,64,0));glow.putalpha(im.getchannel('A').filter(ImageFilter.GaussianBlur(14)).point(lambda a:int(a*.85)));glow.alpha_composite(im);save(glow,Path('symbols')/(n+'_win.webp'))
+decor=['tree_trunk','tree_blue','tree_red','tree_green','clover_clusters','coin','panel','spin_button','spark']
+items={n:cell(args.decor,3,3,i) for i,n in enumerate(decor)}
+for n in decor:
+ if n!='panel':save(items[n],Path('art')/(n+'.webp'))
+uinames=['logo','reel_frame','grand_panel','major_panel','mini_panel','rays']
+for i,n in enumerate(uinames):save(trimmed(cell(args.ui,3,2,i)),Path('art')/(n+'.webp'))
+for n in ['bet_panel','credit_panel','win_panel','auto_button','sound_button','menu_button','bonus_button','minor_panel']:save(trimmed(items['panel']),Path('art')/(n+'.webp'))
+save(trimmed(cell(args.ui,3,2,1)),Path('art/bonus_panel.webp'))
+save(cell(args.symbols,3,3,0),Path('art/bonus_bell.webp'))
+save(Image.open(args.background).convert('RGB'),Path('art/background.webp'))
+# Lightweight independent cell and additive glow textures, never used as game symbols.
+im=Image.new('RGBA',(256,224),(0,0,0,0));d=ImageDraw.Draw(im);d.rounded_rectangle((1,1,254,222),radius=12,fill=(4,26,17,245),outline=(100,100,44,150),width=2);save(im,Path('art/reel_cell.webp'))
+im=Image.new('RGBA',(256,256));pix=im.load()
+for y in range(256):
+ for x in range(256):
+  dist=((x-128)**2+(y-128)**2)**.5/128;pix[x,y]=(152,255,85,int(165*max(0,1-dist)**2))
+save(im,Path('art/glow.webp'))
+manifest={str(f.relative_to(root)):{'bytes':f.stat().st_size,'sha256':hashlib.sha256(f.read_bytes()).hexdigest()} for f in sorted(root.rglob('*.webp'))}
+(root/'graphics-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+print(f'{len(manifest)} separate graphics: {sum(x["bytes"] for x in manifest.values()):,} bytes')

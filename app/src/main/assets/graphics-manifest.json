@@ -1,0 +1,182 @@
+{
+  "art/auto_button.webp": {
+    "bytes": 146404,
+    "sha256": "377459bf987e8464f871a2385340cfc3d0b2063424e8c25ec709dcafedae2e89"
+  },
+  "art/background.webp": {
+    "bytes": 2699978,
+    "sha256": "15a001092df88c3f8bef181b256cd35b6008172082457ba101c48170946789a3"
+  },
+  "art/bet_panel.webp": {
+    "bytes": 146404,
+    "sha256": "377459bf987e8464f871a2385340cfc3d0b2063424e8c25ec709dcafedae2e89"
+  },
+  "art/bonus_bell.webp": {
+    "bytes": 186956,
+    "sha256": "8055f3c2b36045e79fdd4a4c24954984adf52e9474f103566473144f8cfd694b"
+  },
+  "art/bonus_button.webp": {
+    "bytes": 146404,
+    "sha256": "377459bf987e8464f871a2385340cfc3d0b2063424e8c25ec709dcafedae2e89"
+  },
+  "art/bonus_panel.webp": {
+    "bytes": 171468,
+    "sha256": "a8c9a082216f6a1f987f783feeb199467c02bb2da319f50b2375003ccdfec72c"
+  },
+  "art/clover_clusters.webp": {
+    "bytes": 231764,
+    "sha256": "b652aa9e57d0e441b82b5fa41e7a61e2ba3d0ac37025b7febf677abd03ea6d55"
+  },
+  "art/coin.webp": {
+    "bytes": 226330,
+    "sha256": "e33214a5fa4785a7636cd6982abb25ca3143796edee35aaca85e56aca410b806"
+  },
+  "art/credit_panel.webp": {
+    "bytes": 146404,
+    "sha256": "377459bf987e8464f871a2385340cfc3d0b2063424e8c25ec709dcafedae2e89"
+  },
+  "art/glow.webp": {
+    "bytes": 4942,
+    "sha256": "c80f6306fa7bebdb64ec19155164e7fe7198ca79421f0d1770d421fbd0fbc569"
+  },
+  "art/grand_panel.webp": {
+    "bytes": 142616,
+    "sha256": "6339a1573aca706dd175dc87f49c7686fcee5da84cd34bb1c17b0251e5bc4105"
+  },
+  "art/logo.webp": {
+    "bytes": 984678,
+    "sha256": "ff17595e1baee151cffceb92ae925e8ddb113ce9360419f410d00361ec836d1b"
+  },
+  "art/major_panel.webp": {
+    "bytes": 147000,
+    "sha256": "ce55ac45571891559e194ca6b0aed8cf5186a9b5a53c7de82373adf61a1eb977"
+  },
+  "art/menu_button.webp": {
+    "bytes": 146404,
+    "sha256": "377459bf987e8464f871a2385340cfc3d0b2063424e8c25ec709dcafedae2e89"
+  },
+  "art/mini_panel.webp": {
+    "bytes": 145400,
+    "sha256": "1da031f9c93547bea7cbf2c871d080ff73bb5fe5426ebe9d8c1b2e672e1b373d"
+  },
+  "art/minor_panel.webp": {
+    "bytes": 146404,
+    "sha256": "377459bf987e8464f871a2385340cfc3d0b2063424e8c25ec709dcafedae2e89"
+  },
+  "art/rays.webp": {
+    "bytes": 243738,
+    "sha256": "540974b294ea8a4690d323677df9d4f8dbe287d54ea563d9b7905974ed01ed95"
+  },
+  "art/reel_cell.webp": {
+    "bytes": 152,
+    "sha256": "d4ce07f5a99004e3dafd2ab8433f55d5f25687e7db6ad59963963aea543f3ae6"
+  },
+  "art/reel_frame.webp": {
+    "bytes": 171468,
+    "sha256": "a8c9a082216f6a1f987f783feeb199467c02bb2da319f50b2375003ccdfec72c"
+  },
+  "art/sound_button.webp": {
+    "bytes": 146404,
+    "sha256": "377459bf987e8464f871a2385340cfc3d0b2063424e8c25ec709dcafedae2e89"
+  },
+  "art/spark.webp": {
+    "bytes": 133606,
+    "sha256": "693eb8ee7f936a94ab51720ce5d41aa32034eab9251dc8ae90e7f3a3426eed50"
+  },
+  "art/spin_button.webp": {
+    "bytes": 203030,
+    "sha256": "6f9a1db776c616d054278a7d5a338f91774092ab296dc861fb4937503b1d3862"
+  },
+  "art/tree_blue.webp": {
+    "bytes": 281702,
+    "sha256": "b8179ebc2c570dfface262e5cdb1c3b8ddb57b968bd6b8b7a768279528ba3295"
+  },
+  "art/tree_green.webp": {
+    "bytes": 274966,
+    "sha256": "54cf963ed3fb424de9d7092942f8382a60e9ccaa1ba242cac88dfdd0b6969dd2"
+  },
+  "art/tree_red.webp": {
+    "bytes": 258052,
+    "sha256": "0de8d02743b45d8503fe2ca27cd2fcefdae54f33e3bb9ffa37ed2a357a559d97"
+  },
+  "art/tree_trunk.webp": {
+    "bytes": 242464,
+    "sha256": "dad35cea182bd2b77c349e34af9599759188bc4bd7a67a1e4ac59971d7708227"
+  },
+  "art/win_panel.webp": {
+    "bytes": 146404,
+    "sha256": "377459bf987e8464f871a2385340cfc3d0b2063424e8c25ec709dcafedae2e89"
+  },
+  "symbols/bell.webp": {
+    "bytes": 186956,
+    "sha256": "8055f3c2b36045e79fdd4a4c24954984adf52e9474f103566473144f8cfd694b"
+  },
+  "symbols/bell_win.webp": {
+    "bytes": 186390,
+    "sha256": "ef1abf2d84b53fdedea4f6da86d45745c98cc2e15b803605fabdbe0834f6e883"
+  },
+  "symbols/clover.webp": {
+    "bytes": 204822,
+    "sha256": "b898326749d3cd0f268b70d996ef8d4be96b45ed601b9b3a7400e960bef52b57"
+  },
+  "symbols/clover_win.webp": {
+    "bytes": 207904,
+    "sha256": "66cfc47e1da463e95ebbcb74f46446bde3a4d9762335a0fc8d7b381a7e06c6f5"
+  },
+  "symbols/diamond.webp": {
+    "bytes": 151228,
+    "sha256": "d403a2b9f171127530359c6de6e4147a48587c61891ba5c82e4c0ce991ed0159"
+  },
+  "symbols/diamond_win.webp": {
+    "bytes": 155318,
+    "sha256": "31a366af11f5d303a378973f37b0e498e825874d7cd40fb37ed733e81f7fbc44"
+  },
+  "symbols/grapes.webp": {
+    "bytes": 221464,
+    "sha256": "4fa5c8ce856d4066fbd66d268050102a2750525fdf826e1a26f0005f375bf38d"
+  },
+  "symbols/grapes_win.webp": {
+    "bytes": 226878,
+    "sha256": "10724a213f6ed98794c2ec7d6ad83cfd049f4baed539575ed490f57f3493fb1b"
+  },
+  "symbols/lemon.webp": {
+    "bytes": 181320,
+    "sha256": "4fd5a5e384155e0f1ccf842583af4cb18307fd14dd04680fd2e057781a030404"
+  },
+  "symbols/lemon_win.webp": {
+    "bytes": 186438,
+    "sha256": "51b4d7c2155287cc5e5b470e83457ada527425881ac12025078c58b3f010212a"
+  },
+  "symbols/orange.webp": {
+    "bytes": 212952,
+    "sha256": "1deab7b98fcd9cee559fefebbfca400fdad1e3a179487a354564445986c91277"
+  },
+  "symbols/orange_win.webp": {
+    "bytes": 215186,
+    "sha256": "8d5f576f1819e0af3b40295a3e30d977347c92b8f95fd8b7e13405cc6f7728c9"
+  },
+  "symbols/pot.webp": {
+    "bytes": 235286,
+    "sha256": "52bf97703f7dd635e182e0eb75ec9444c6c1aacd807f8ce6bb5759b68554e4e9"
+  },
+  "symbols/pot_win.webp": {
+    "bytes": 233300,
+    "sha256": "23674486fbd512957f8b39d8e7553ae0b3a848217d3b5faa80ec0e35125b80c9"
+  },
+  "symbols/seven.webp": {
+    "bytes": 173960,
+    "sha256": "36d562c6e1b679b713d2e582c58ec5310d61faa249ec4b8719d53599f9a4df48"
+  },
+  "symbols/seven_win.webp": {
+    "bytes": 172040,
+    "sha256": "f4727fc9f9df628c86600070f3c54950d06cac7dace1bd13ce44be503ae2f700"
+  },
+  "symbols/watermelon.webp": {
+    "bytes": 189536,
+    "sha256": "e1e394a7e01913024117ab1705365dfa8c481bc152b5f28188f795fdd1982bc6"
+  },
+  "symbols/watermelon_win.webp": {
+    "bytes": 192214,
+    "sha256": "be4e3a7e79e45b0295e5e52444a39137533b76a139320ed1cdac9270e8da247a"
+  }
+}

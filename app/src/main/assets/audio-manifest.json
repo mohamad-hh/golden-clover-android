@@ -1,0 +1,66 @@
+{
+  "bell_drop.wav": {
+    "bytes": 229364,
+    "sha256": "da26b7ed8e3c3cba1cdcf5a31b5738e76990efa8f593c66555fa8b65d84b89cd"
+  },
+  "big_win.wav": {
+    "bytes": 396944,
+    "sha256": "feca390bd210819ca7c20fbc647ee5d15f4ab0dd018a8b9453f1217170f73c72"
+  },
+  "bonus_trigger.wav": {
+    "bytes": 264644,
+    "sha256": "b9531b5a7c3b036d188129e769e4e138bd38d783af487973bfd7676700a2c57f"
+  },
+  "click.wav": {
+    "bytes": 7540,
+    "sha256": "45f0fd239b2679753b43697fb8bb5bcda1f4a0a67a3abbb8c59588fdc2a777e9"
+  },
+  "coin_shower.wav": {
+    "bytes": 264644,
+    "sha256": "e5582882dbe8a54e2e7837f68d160588e16c8837ad84d6ea8aeb6931d09fc521"
+  },
+  "jackpot.wav": {
+    "bytes": 529244,
+    "sha256": "a6512616d9af47f0626ef0bf6dabdc9b02c0105cb7200905892bddd7e558662e"
+  },
+  "medium_win.wav": {
+    "bytes": 185264,
+    "sha256": "1df684831eec144e432a030a6af973f0c4e083d6fc74863ad3b2db9adcfb62f4"
+  },
+  "normal_win.wav": {
+    "bytes": 132344,
+    "sha256": "c0206be5b76f60216f52671917f264f5490e48a0cf3e3e91ca2f4961e1ee8cef"
+  },
+  "reel_loop.wav": {
+    "bytes": 88244,
+    "sha256": "304332b83d560ea3d65048f6b2525592e64cd58c0a4531ffdcaf1a3d75b95dc4"
+  },
+  "reel_stop_1.wav": {
+    "bytes": 24740,
+    "sha256": "8bfe96445e46089aa07236f16065e1e6c5063441b345e59f1c6cdbf63e680239"
+  },
+  "reel_stop_2.wav": {
+    "bytes": 24740,
+    "sha256": "b4d112a0daf21349e53d0c3ccc8e36d3d91e8399143ebc185596652cd072576b"
+  },
+  "reel_stop_3.wav": {
+    "bytes": 24740,
+    "sha256": "7b3129fe23ff7815588d0a23ad6506cdfb8971ccd09628bd9b9b893c74ceda0b"
+  },
+  "reel_stop_4.wav": {
+    "bytes": 24740,
+    "sha256": "b2cf49e8bb7cfe1477c91c18e67a1e2518a49bd71412da225a15dfe715ffe466"
+  },
+  "reel_stop_5.wav": {
+    "bytes": 24740,
+    "sha256": "d2ce20449f7d04732198002470a0db239eb0b2858d70040050d78624a7ce59b8"
+  },
+  "respin_reset.wav": {
+    "bytes": 105884,
+    "sha256": "fad71cce2614f3e8d6c0c0ca3d8675b2a0cb98c29146bd9e38266cad12bdd93c"
+  },
+  "spin_start.wav": {
+    "bytes": 61782,
+    "sha256": "eb8a21c504f91aa6ad6310bb2ccd83184dd961d8a3a1a0abab613fda841bb234"
+  }
+}
