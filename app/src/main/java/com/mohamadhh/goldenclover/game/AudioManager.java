@@ -5,6 +5,7 @@ public final class AudioManager {
  public static final String[] NAMES={"click","spin_start","reel_loop","reel_stop_1","reel_stop_2","reel_stop_3","reel_stop_4","reel_stop_5","normal_win","medium_win","big_win","coin_shower","bonus_trigger","bell_drop","respin_reset","jackpot"};
  private final int[] ids=new int[NAMES.length];private final boolean[] ready=new boolean[NAMES.length];private final SoundPool pool;private boolean enabled=true;private int loop;private boolean wantLoop;
  public AudioManager(Context c)throws IOException{pool=new SoundPool.Builder().setMaxStreams(10).setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()).build();pool.setOnLoadCompleteListener((p,id,status)->{for(int i=0;i<ids.length;i++)if(ids[i]==id)ready[i]=status==0;});for(int i=0;i<NAMES.length;i++)try(AssetFileDescriptor fd=c.getAssets().openFd("audio/"+NAMES[i]+".wav")){ids[i]=pool.load(fd,1);}}
+ public int readyCount(){int n=0;for(boolean r:ready)if(r)n++;return n;}
  public void enabled(boolean on){enabled=on;if(!on)stopLoop();}
  public void play(int i){if(enabled&&ready[i])pool.play(ids[i],.8f,.8f,1,0,1);}
  public void loop(boolean on){wantLoop=on;if(!on){stopLoop();return;}if(enabled&&loop==0&&ready[2])loop=pool.play(ids[2],.22f,.22f,0,-1,1);}

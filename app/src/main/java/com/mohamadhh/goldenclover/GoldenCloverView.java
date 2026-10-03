@@ -16,7 +16,7 @@ public final class GoldenCloverView extends View implements Choreographer.FrameC
  private static final Typeface SERIF=Typeface.create("serif",Typeface.BOLD),SANS=Typeface.create("sans-serif-medium",Typeface.NORMAL);
  private static final String[] JACKPOTS={"GRAND","MAJOR","MINOR","MINI"},JACKPOT_ART={"grand_panel","major_panel","minor_panel","mini_panel"};
  private final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
- private final RectF dst=new RectF();
+ private final RectF dst=new RectF();private final Rect source=new Rect();
  private final SharedPreferences prefs;
  private AudioManager audio;
  private volatile boolean loaded,disposed;private volatile String error;
@@ -47,7 +47,9 @@ public final class GoldenCloverView extends View implements Choreographer.FrameC
  private static String money(double value){return String.format(Locale.US,"%,.2f TL",value);}
  private static String integer(double value){return String.format(Locale.US,"%,d",(long)value);}
  private void bmp(Canvas c,Bitmap b,float x,float y,float w,float h,int alpha){if(b==null)return;p.setShader(null);p.setColor(Color.WHITE);p.setAlpha(Math.max(0,Math.min(255,alpha)));dst.set(x,y,x+w,y+h);c.drawBitmap(b,null,dst,p);p.setAlpha(255);}
- private void art(Canvas c,String name,float x,float y,float w,float h){bmp(c,assets.get(name),x,y,w,h,255);}
+ private void art(Canvas c,String name,float x,float y,float w,float h){if(name.equals("reel_frame")||name.equals("bonus_panel")){frame(c,assets.get(name),x,y,w,h);return;}bmp(c,assets.get(name),x,y,w,h,255);}
+ private void frame(Canvas c,Bitmap b,float x,float y,float w,float h){p.setShader(null);p.setColor(Color.WHITE);p.setAlpha(255);int bw=b.getWidth(),bh=b.getHeight(),edge=60;float capX=43,capY=37;for(int row=0;row<3;row++)for(int col=0;col<3;col++){int sl=col==0?0:col==1?edge:bw-edge,st=row==0?0:row==1?edge:bh-edge,sr=col==0?edge:col==1?bw-edge:bw,sb=row==0?edge:row==1?bh-edge:bh;float dl=x+(col==0?0:col==1?capX:w-capX),dt=y+(row==0?0:row==1?capY:h-capY),dr=x+(col==0?capX:col==1?w-capX:w),db=y+(row==0?capY:row==1?h-capY:h);source.set(sl,st,sr,sb);dst.set(dl,dt,dr,db);c.drawBitmap(b,source,dst,p);}}
+
  private void rect(Canvas c,float x,float y,float w,float h,int color,float radius){p.setShader(null);p.setColor(color);p.setStyle(Paint.Style.FILL);dst.set(x,y,x+w,y+h);c.drawRoundRect(dst,radius,radius,p);}
  private void text(Canvas c,String text,float x,float y,float size,int color,boolean bold){p.setShader(null);p.setColor(color);p.setTextSize(size);p.setTypeface(bold?SERIF:SANS);p.setTextAlign(Paint.Align.CENTER);p.setShadowLayer(3,0,2,0xdd000000);c.drawText(text,x,y,p);p.clearShadowLayer();}
  private void goldText(Canvas c,String s,float x,float y,float size){p.setTextSize(size);p.setTypeface(SERIF);p.setTextAlign(Paint.Align.CENTER);p.setColor(0xff3b1903);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(size*.075f);c.drawText(s,x,y,p);p.setStyle(Paint.Style.FILL);p.setShader(gold);c.drawText(s,x,y,p);p.setShader(null);}

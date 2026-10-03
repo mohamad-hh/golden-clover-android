@@ -21,7 +21,7 @@ public final class GameState {
    case IDLE:if(ui.auto&&time>.7f)spin();break;
    case SPIN:int old=reels.stopped;reels.update(dt,time);for(int c=old;c<reels.stopped;c++)events|=STOP0<<c;if(time>2.65f){baseWin=PayoutLogic.evaluate(reels.symbols,bet.value,reels.glow);if(reels.bonusCount()>=5){credit+=baseWin;beginBonus();}else{win=baseWin;credit+=win;if(win>0){events|=win>=bet.value*10?BIG:win>=bet.value*3?MEDIUM:NORMAL;events|=COINS;enter(Phase.WIN);}else enter(Phase.IDLE);}}break;
    case WIN:if(time>(win>=bet.value*10?4.5f:2.0f))enter(Phase.IDLE);break;
-   case BOUNCE:if(time-dt<.8f&&time>=.8f)events|=DROP;if(time>3.2f){enter(Phase.BONUS);events|=COINS;}break;
+   case BOUNCE:if(time-dt<1.85f&&time>=1.85f)events|=DROP;if(time>3.2f){enter(Phase.BONUS);events|=COINS;}break;
    case BONUS:if(time>1.2f){enter(Phase.RESPIN);events|=START;}break;
    case RESPIN:if(time>1.4f){boolean added=bonus.respin(random,bet.value);events|=STOP0;if(added){events|=RESET|COINS;}if(bonus.remaining==0){win=bonus.total;credit+=win;events|=bonus.grand?JACKPOT:BIG;events|=COINS;enter(Phase.BONUS_END);}else enter(Phase.BONUS);}break;
    case BONUS_END:if(time>(bonus.grand?9:5))enter(Phase.IDLE);break;
