@@ -43,6 +43,10 @@
     "bytes": 142616,
     "sha256": "6339a1573aca706dd175dc87f49c7686fcee5da84cd34bb1c17b0251e5bc4105"
   },
+  "art/inferno_background.webp": {
+    "bytes": 387088,
+    "sha256": "21c11f28524f420124ab422fa21780dcf3746948680d1f1b7e097a8548c15386"
+  },
   "art/logo.webp": {
     "bytes": 984678,
     "sha256": "ff17595e1baee151cffceb92ae925e8ddb113ce9360419f410d00361ec836d1b"
