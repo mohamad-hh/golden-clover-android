@@ -1,6 +1,6 @@
 package com.mohamadhh.goldenclover.game;
 public final class UIState {
- public boolean betMenu,menu,sound=true,auto;
- public String message="7 LINES • VIRTUAL CREDITS ONLY";
+ public boolean betMenu,menu,featureMenu,sound=true,auto;
+ public String message="25 LINES • DEMO PLAY";
  public float messageTime,popup;
 }

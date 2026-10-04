@@ -1,6 +1,8 @@
-name: Build and verify Golden Clover X
+name: Build and verify Clover Inferno Demo
 on:
   push:
+    branches: [main, codex/inferno-demo]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 permissions:
@@ -31,14 +33,14 @@ jobs:
       - name: Inspect APK and verify every packaged asset
         run: |
           test -s app/build/outputs/apk/debug/app-debug.apk
-          cp app/build/outputs/apk/debug/app-debug.apk Golden-Clover.apk
-          unzip -l Golden-Clover.apk | tee apk-contents.txt
-          python3 tools/verify_apk.py Golden-Clover.apk | tee apk-verification.txt
-          stat --printf='APK size: %s bytes\n' Golden-Clover.apk
+          cp app/build/outputs/apk/debug/app-debug.apk Clover-Inferno-Demo.apk
+          unzip -l Clover-Inferno-Demo.apk | tee apk-contents.txt
+          python3 tools/verify_apk.py Clover-Inferno-Demo.apk | tee apk-verification.txt
+          stat --printf='APK size: %s bytes\n' Clover-Inferno-Demo.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: Golden-Clover-APK
-          path: Golden-Clover.apk
+          name: Clover-Inferno-Demo-APK
+          path: Clover-Inferno-Demo.apk
           if-no-files-found: error
       - name: Enable emulator acceleration
         run: |
@@ -63,7 +65,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Golden-Clover-Verification
+          name: Clover-Inferno-Verification
           path: |
             logic-test.log
             apk-contents.txt
@@ -74,10 +76,10 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Golden-Clover-Visual-Review
+          name: Clover-Inferno-Visual-Review
           path: |
             qa/screenshots/16x9-*.png
             qa/screenshots/*-base.png
-            qa/screenshots/20x9-bonus.png
+            qa/screenshots/20x9-all-features.png
             qa/screenshots/20x9-grand.png
           if-no-files-found: error
